@@ -1,15 +1,15 @@
 :root {
-  --bg: #12110f;
-  --bg-elevated: #221f1a;
-  --bg-soft: #2c2822;
-  --line: rgba(232, 220, 198, 0.2);
-  --line-strong: rgba(232, 220, 198, 0.34);
-  --text: #f6f1e8;
-  --text-secondary: #ddd2c2;
-  --text-muted: #c2b6a4;
-  --accent: #d4a574;
-  --accent-strong: #e8c08a;
-  --accent-dim: rgba(212, 165, 116, 0.18);
+  --bg: #090909;
+  --bg-elevated: #151515;
+  --bg-soft: #202020;
+  --line: rgba(255, 255, 255, 0.14);
+  --line-strong: rgba(255, 255, 255, 0.28);
+  --text: #f7f7f5;
+  --text-secondary: #ddddda;
+  --text-muted: #aaa9a4;
+  --accent: #e7e4dc;
+  --accent-strong: #ffffff;
+  --accent-dim: rgba(255, 255, 255, 0.10);
   --danger: #e08a7c;
   --danger-dim: rgba(224, 138, 124, 0.12);
   --success: #9dcb97;
@@ -40,9 +40,8 @@ body {
   font-family: var(--font-sans);
   color: var(--text);
   background:
-    radial-gradient(1200px 600px at 10% -10%, rgba(212, 165, 116, 0.16), transparent 55%),
-    radial-gradient(900px 500px at 100% 0%, rgba(90, 70, 40, 0.25), transparent 50%),
-    linear-gradient(180deg, #171510 0%, var(--bg) 40%, #0e0d0b 100%);
+    radial-gradient(900px 520px at 50% -8%, rgba(255, 255, 255, 0.08), transparent 58%),
+    linear-gradient(180deg, #111 0%, var(--bg) 45%, #050505 100%);
   background-attachment: fixed;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
@@ -101,9 +100,10 @@ button {
 
 .brand {
   font-family: var(--font-display);
-  font-size: 2.4rem;
-  line-height: 1;
-  letter-spacing: 0.01em;
+  font-size: 2.65rem;
+  line-height: 0.95;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   margin: 0;
   color: var(--text);
 }
@@ -168,7 +168,7 @@ button {
 .btn-primary {
   background: linear-gradient(135deg, var(--accent-strong), var(--accent));
   color: #1a140c;
-  box-shadow: 0 10px 24px rgba(212, 165, 116, 0.28);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
 }
 
 .btn-primary:disabled {
@@ -913,4 +913,28 @@ button {
     flex-direction: column;
     gap: 12px;
   }
+}
+
+
+/* Barinoff prospect demo */
+.barinoff-location {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 14px 0 2px;
+  border-top: 1px solid var(--line);
+}
+.barinoff-location span {
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.barinoff-location strong {
+  font-size: 1rem;
+  font-weight: 650;
+}
+.barinoff-location small {
+  color: var(--text-muted);
+  line-height: 1.4;
 }
