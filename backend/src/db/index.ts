@@ -3,60 +3,54 @@ import type Database from 'better-sqlite3';
 const SERVICES = [
   {
     name: 'Мужская стрижка',
-    description: 'Классическая мужская стрижка с укладкой',
+    description: 'Фирменная мужская стрижка Barinoff.',
     duration_minutes: 60,
-    price: 1500,
+    price: 1800,
   },
   {
-    name: 'Стрижка + борода',
-    description: 'Стрижка и оформление бороды',
+    name: 'Стрижка + моделирование бороды',
+    description: 'Стрижка и моделирование бороды.',
     duration_minutes: 90,
-    price: 2200,
+    price: 2500,
   },
   {
-    name: 'Оформление бороды',
-    description: 'Моделирование и стрижка бороды',
+    name: 'Моделирование бороды',
+    description: 'Форма, контуры и аккуратное оформление бороды.',
     duration_minutes: 45,
-    price: 1000,
+    price: 1200,
   },
   {
     name: 'Детская стрижка',
-    description: 'Стрижка для детей до 12 лет',
+    description: 'Стрижка для детей от 6 до 12 лет.',
     duration_minutes: 45,
-    price: 1200,
+    price: 1300,
+  },
+  {
+    name: 'Брейдинг',
+    description: 'Брейды, дреды, косы и другие виды плетения.',
+    duration_minutes: 180,
+    price: 8000,
   },
 ] as const;
 
 const MASTERS = [
   {
-    name: 'Александр',
-    role: 'Senior Barber',
-    description: 'Точные классические стрижки и аккуратная укладка.',
+    name: 'Алексей',
+    role: 'Барбер',
+    description: 'Опытный мастер Barinoff: мужские стрижки и работа с бородой.',
     display_order: 1,
   },
   {
-    name: 'Максим',
-    role: 'Barber',
-    description: 'Современные мужские стрижки и работа с бородой.',
+    name: 'Роман',
+    role: 'Барбер',
+    description: 'Опытный мастер Barinoff: мужские стрижки и работа с бородой.',
     display_order: 2,
   },
   {
-    name: 'Артём',
-    role: 'Barber',
-    description: 'Спокойный ритм и чистые линии в каждой стрижке.',
+    name: 'Полина',
+    role: 'Мастер по плетению',
+    description: 'Брейды, дреды, косы и другие виды плетения.',
     display_order: 3,
-  },
-  {
-    name: 'Даниил',
-    role: 'Barber',
-    description: 'Уверенная техника и внимание к деталям образа.',
-    display_order: 4,
-  },
-  {
-    name: 'Никита',
-    role: 'Junior Barber',
-    description: 'Аккуратные стрижки и бережное оформление бороды.',
-    display_order: 5,
   },
 ] as const;
 
@@ -77,19 +71,15 @@ function hoursForDays(
 }
 
 const MASTER_HOURS: Record<string, HoursSpec[]> = {
-  Александр: hoursForDays([1, 2, 3, 4, 5, 6], '10:00', '20:00'),
-  Максим: hoursForDays([1, 2, 3, 4, 5], '09:00', '18:00'),
-  Артём: hoursForDays([2, 3, 4, 5, 6], '11:00', '21:00'),
-  Даниил: hoursForDays([0, 1, 3, 4, 5, 6], '10:00', '19:00'),
-  Никита: hoursForDays([1, 2, 3, 4, 5], '12:00', '20:00'),
+  Алексей: hoursForDays([0, 1, 2, 3, 4, 5, 6], '11:00', '22:00'),
+  Роман: hoursForDays([0, 1, 2, 3, 4, 5, 6], '11:00', '22:00'),
+  Полина: hoursForDays([0, 1, 2, 3, 4, 5, 6], '11:00', '22:00'),
 };
 
 const MASTER_SERVICE_NAMES: Record<string, readonly string[]> = {
-  Александр: ['Мужская стрижка', 'Стрижка + борода'],
-  Максим: ['Мужская стрижка', 'Стрижка + борода', 'Оформление бороды'],
-  Артём: ['Мужская стрижка', 'Стрижка + борода', 'Оформление бороды'],
-  Даниил: ['Мужская стрижка', 'Детская стрижка'],
-  Никита: ['Мужская стрижка', 'Оформление бороды', 'Детская стрижка'],
+  Алексей: ['Мужская стрижка', 'Стрижка + моделирование бороды', 'Моделирование бороды', 'Детская стрижка'],
+  Роман: ['Мужская стрижка', 'Стрижка + моделирование бороды', 'Моделирование бороды', 'Детская стрижка'],
+  Полина: ['Брейдинг'],
 };
 
 const DEMO_TELEGRAM_USER_ID = 999000001;
@@ -236,10 +226,10 @@ export function seed(db: Database.Database, now = new Date()): void {
   }
 
   const friday = findFutureWeekday(now, 5, 7);
-  const alexander = db.prepare(`SELECT id FROM masters WHERE name = 'Александр'`).get() as
+  const alexander = db.prepare(`SELECT id FROM masters WHERE name = 'Алексей'`).get() as
     | { id: number }
     | undefined;
-  const maxim = db.prepare(`SELECT id FROM masters WHERE name = 'Максим'`).get() as
+  const maxim = db.prepare(`SELECT id FROM masters WHERE name = 'Роман'`).get() as
     | { id: number }
     | undefined;
   const haircut = db.prepare(`SELECT id FROM services WHERE name = 'Мужская стрижка'`).get() as
