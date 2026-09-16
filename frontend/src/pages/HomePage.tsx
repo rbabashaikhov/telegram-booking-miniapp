@@ -45,14 +45,19 @@ export function HomePage() {
         <p className="eyebrow">{business.businessType}</p>
         <h1 className="brand">{business.businessName}</h1>
         <p className="lead">{business.appDescription}</p>
+        <div className="barinoff-location">
+          <span>Москва · Митино</span>
+          <strong>Пятницкое шоссе, 21 к1</strong>
+          <small>ТЦ «Твой», помещение Б1 · рядом с Ozon</small>
+        </div>
         <Link className="btn btn-primary btn-block hero-cta" to="/services">
-          Записаться
+          Записаться в Barinoff
         </Link>
       </section>
 
       <section className="stack">
         <div className="row">
-          <h2 className="section-title">Услуги</h2>
+          <h2 className="section-title">Популярные услуги</h2>
           <Link className="btn btn-ghost" to="/services">
             Все →
           </Link>
